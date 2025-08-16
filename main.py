@@ -16,16 +16,19 @@ while True:
 
     cv2.imshow('Camera', frame)
 
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(1) & 0xFF  # Check key press every frame
 
-    # Capture image when 'c' is pressed
+    # Capture image and exit window after saving
     if key == ord('c'):
         img_name = f"captured_image_{img_counter}.png"
         cv2.imwrite(img_name, frame)
         print(f"{img_name} saved!")
         img_counter += 1
 
-    # Break if 'q' is pressed
+        # Exit after saving
+        break
+
+    # Just close if 'q' is pressed
     if key == ord('q'):
         break
 
@@ -34,6 +37,4 @@ while True:
         break
 
 cap.release()
-cv2.destroyAllWindows()
-
 cv2.destroyAllWindows()
